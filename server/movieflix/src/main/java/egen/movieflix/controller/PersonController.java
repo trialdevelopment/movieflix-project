@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import egen.movieflix.entity.User;
-import egen.movieflix.exception.UserAlreadyExistsException;
-import egen.movieflix.exception.UserNotFoundException;
-import egen.movieflix.service.UserService;
+import egen.movieflix.entity.Person;
+import egen.movieflix.exception.PersonAlreadyExistsException;
+import egen.movieflix.exception.PersonNotFoundException;
+import egen.movieflix.service.PersonService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -22,10 +22,10 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @RequestMapping("/users")
 @Api(tags="users")
-public class UserController {
+public class PersonController {
 
 	@Autowired
-	private UserService service;
+	private PersonService service;
 
 	@RequestMapping(method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value="Find All Users",
@@ -34,8 +34,8 @@ public class UserController {
 			@ApiResponse(code=200, message="Success"),
 			@ApiResponse(code=500, message="Internal Server Error")
 	})
-	public List<User> findAllUsers () {
-		return service.findAllUsers();
+	public List<Person> findAllPeople () {
+		return service.findAllPeople();
 	}
 
 	@RequestMapping(value="{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -46,8 +46,8 @@ public class UserController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Internal Server Error")
 	})
-	public User findOne(@PathVariable("id") String id) throws UserNotFoundException {
-		return service.findUserById(id);
+	public Person findOne(@PathVariable("id") String id) throws PersonNotFoundException {
+		return service.findPersonById(id);
 	}
 
 	@RequestMapping(value="{email}/{password}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -58,8 +58,8 @@ public class UserController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Internal Server Error")
 	})
-	public User findUser(@PathVariable("email") String email,@PathVariable("password") String password) throws UserNotFoundException {
-		return service.findUser(email,password);
+	public Person findUser(@PathVariable("email") String email,@PathVariable("password") String password) throws PersonNotFoundException {
+		return service.findPerson(email,password);
 	}
 
 	@RequestMapping(method=RequestMethod.POST, 
@@ -72,8 +72,8 @@ public class UserController {
 			@ApiResponse(code=400, message="Bad Request"),
 			@ApiResponse(code=500, message="Internal Server Error")
 	})
-	public User createUser (@RequestBody User user) throws UserAlreadyExistsException {
-		return service.createUser(user);
+	public Person createUser (@RequestBody Person user) throws PersonAlreadyExistsException {
+		return service.createPerson(user);
 	}
 
 	@RequestMapping(value="{id}", 
@@ -88,8 +88,8 @@ public class UserController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Internal Server Error")
 	})
-	public User updateUser (@PathVariable("id") String id, @RequestBody User user) throws UserNotFoundException {
-		return service.updateUser(id, user);
+	public Person updateUser (@PathVariable("id") String id, @RequestBody Person user) throws PersonNotFoundException {
+		return service.updatePerson(id, user);
 	}
 
 	@RequestMapping(value="{id}", method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -100,7 +100,7 @@ public class UserController {
 			@ApiResponse(code=404, message="Not Found"),
 			@ApiResponse(code=500, message="Internal Server Error")
 	})
-	public void deleteUser (@PathVariable("id") String id) throws UserNotFoundException {
-		service.deleteUser(id);
+	public void deleteUser (@PathVariable("id") String id) throws PersonNotFoundException {
+		service.deletePerson(id);
 	}
 }

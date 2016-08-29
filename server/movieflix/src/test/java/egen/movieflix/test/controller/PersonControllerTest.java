@@ -19,37 +19,37 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import egen.movieflix.controller.UserController;
-import egen.movieflix.entity.User;
-import egen.movieflix.exception.UserAlreadyExistsException;
-import egen.movieflix.exception.UserNotFoundException;
-import egen.movieflix.service.UserService;
+import egen.movieflix.controller.PersonController;
+import egen.movieflix.entity.Person;
+import egen.movieflix.exception.PersonAlreadyExistsException;
+import egen.movieflix.exception.PersonNotFoundException;
+import egen.movieflix.service.PersonService;
 import egen.movieflix.test.TestConfig;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={TestConfig.class})
-public class UserControllerTest {
+public class PersonControllerTest {
 	
 	
 		//mock the dependencies of the controller
 		@Mock
-		private UserService service;
+		private PersonService service;
 
 		//controller that needs to be tested
 		@InjectMocks
-		private UserController controller;
+		private PersonController controller;
 		
 		private MockMvc mockMvc;
 
-		private User user;
+		private Person user;
 
 		@Before
 		public void setup() {
 			//init mockito based mocks
 			MockitoAnnotations.initMocks(this);
 			
-			user = new User();
+			user = new Person();
 			user.setEmail("test@test.com");
 			user.setFirstName("test");
 			user.setLastName("test");
@@ -64,23 +64,23 @@ public class UserControllerTest {
 		}
 		
 		@Test
-		public void testFindAllUsers() throws Exception {
+		public void testFindAllPeople() throws Exception {
 			mockMvc.perform(MockMvcRequestBuilders.get("/users"))
 			.andExpect(MockMvcResultMatchers.status().isOk());
 
-			Mockito.verify(service).findAllUsers();
+			Mockito.verify(service).findAllPeople();
 		}
 
 		@Test
 		public void testFindOne() throws Exception {
 			mockMvc.perform(MockMvcRequestBuilders.get("/users/" + user.getId()))
 					.andExpect(MockMvcResultMatchers.status().isOk());
-			Mockito.verify(service).findUserById(user.getId());
+			Mockito.verify(service).findPersonById(user.getId());
 		}
 
 		@Test
 		public void testFindOneNotFound() throws Exception {
-			Mockito.when(service.findUserById("asdfasdf")).thenThrow(new UserNotFoundException());
+			Mockito.when(service.findPersonById("asdfasdf")).thenThrow(new PersonNotFoundException());
 			
 			mockMvc.perform(MockMvcRequestBuilders.get("/users/asdfasdf"))
 					.andExpect(MockMvcResultMatchers.status().isNotFound());
@@ -90,12 +90,12 @@ public class UserControllerTest {
 		public void testFindUser() throws Exception {
 			mockMvc.perform(MockMvcRequestBuilders.get("/users/" + user.getEmail() +'/' +user.getPassword()))
 					.andExpect(MockMvcResultMatchers.status().isOk());
-			Mockito.verify(service).findUser(user.getEmail(),user.getPassword());
+			Mockito.verify(service).findPerson(user.getEmail(),user.getPassword());
 		}
 
 		@Test
 		public void testFindUserNotFound() throws Exception {
-			Mockito.when(service.findUser("asdfasdf","dkjsdjksd")).thenThrow(new UserNotFoundException());
+			Mockito.when(service.findPerson("asdfasdf","dkjsdjksd")).thenThrow(new PersonNotFoundException());
 			
 			mockMvc.perform(MockMvcRequestBuilders.get("/users/asdfasdf/dkjsdjksd"))
 					.andExpect(MockMvcResultMatchers.status().isNotFound());
@@ -110,12 +110,12 @@ public class UserControllerTest {
 			mockMvc.perform(MockMvcRequestBuilders.post("/users").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).content(requestBody))
 					.andExpect(MockMvcResultMatchers.status().isOk());
 			
-			Mockito.verify(service).createUser(Mockito.any(User.class));
+			Mockito.verify(service).createPerson(Mockito.any(Person.class));
 		}
 		
 		@Test
 		public void testCreateUserException() throws Exception {
-			Mockito.when(service.createUser(Mockito.any(User.class))).thenThrow(new UserAlreadyExistsException());
+			Mockito.when(service.createPerson(Mockito.any(Person.class))).thenThrow(new PersonAlreadyExistsException());
 			
 			String requestBody = new ObjectMapper().writeValueAsString(user);
 			mockMvc.perform(MockMvcRequestBuilders.post("/users")
@@ -132,14 +132,14 @@ public class UserControllerTest {
 												  .content(requestBody))
 					.andExpect(MockMvcResultMatchers.status().isOk());
 			
-			Mockito.verify(service).updateUser(Mockito.eq(user.getId()), Mockito.any(User.class));
+			Mockito.verify(service).updatePerson(Mockito.eq(user.getId()), Mockito.any(Person.class));
 		}
 		
 		@Test
 		public void testDeleteUser() throws Exception {
 			mockMvc.perform(MockMvcRequestBuilders.delete("/users/" + user.getId()))
 					.andExpect(MockMvcResultMatchers.status().isOk());
-			Mockito.verify(service).deleteUser(user.getId());
+			Mockito.verify(service).deletePerson(user.getId());
 		}
 
 }

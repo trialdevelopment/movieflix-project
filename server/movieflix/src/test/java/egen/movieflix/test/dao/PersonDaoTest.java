@@ -18,31 +18,31 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import egen.movieflix.dao.UserDao;
-import egen.movieflix.dao.UserDaoImpl;
-import egen.movieflix.entity.User;
+import egen.movieflix.dao.PersonDao;
+import egen.movieflix.dao.PersonDaoImpl;
+import egen.movieflix.entity.Person;
 import egen.movieflix.test.TestConfig;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={TestConfig.class})
-public class UserDaoTest {
+public class PersonDaoTest {
 	
 	@Mock
 	private EntityManager em;
 	
 	@InjectMocks
-	private UserDao dao = new UserDaoImpl();
+	private PersonDao dao = new PersonDaoImpl();
 	
 	@Mock
-	private TypedQuery<User> query;
+	private TypedQuery<Person> query;
 	
-	private User user;
+	private Person user;
 	
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
-		user = new User();
+		user = new Person();
 		user.setEmail("test@test.com");
 		user.setFirstName("test");
 		user.setLastName("user");
@@ -52,70 +52,70 @@ public class UserDaoTest {
 	
 	@Test
 	public void testFindAllUsers() {
-		List<User> expected = Arrays.asList(user);
+		List<Person> expected = Arrays.asList(user);
 		
-		Mockito.when(em.createQuery("SELECT u FROM User u ORDER BY u.email ASC", User.class)).thenReturn(query);
+		Mockito.when(em.createQuery("SELECT u FROM Person u ORDER BY u.email ASC", Person.class)).thenReturn(query);
 		Mockito.when(query.getResultList()).thenReturn(expected);
 		
-		List<User> users = dao.findAllUsers();
+		List<Person> users = dao.findAllPeople();
 		Assert.assertEquals(expected, users);
 	}
 	
 	@Test
-	public void testFindUserById() {
-		Mockito.when(em.find(User.class, user.getId())).thenReturn(user);
+	public void testFindPersonById() {
+		Mockito.when(em.find(Person.class, user.getId())).thenReturn(user);
 		
-		User actual = dao.findUserById(user.getId());
+		Person actual = dao.findPersonById(user.getId());
 		Assert.assertEquals(user, actual);
 	}
 	
 	@Test
-	public void testFindUser() {
-		List<User> expected = Arrays.asList(user);
-		Mockito.when(em.createNamedQuery("User.findUser", User.class)).thenReturn(query);
+	public void testFindPerson() {
+		List<Person> expected = Arrays.asList(user);
+		Mockito.when(em.createNamedQuery("Person.findPerson", Person.class)).thenReturn(query);
 		Mockito.when(query.getResultList()).thenReturn(expected);
 		
-		User actual = dao.findUser(user.getEmail(),user.getPassword());
+		Person actual = dao.findPerson(user.getEmail(),user.getPassword());
 		Assert.assertEquals(user, actual);
 	}
 	
 	@Test
-	public void testFindUserNull () {
-		Mockito.when(em.createNamedQuery("User.findUser", User.class)).thenReturn(query);
+	public void testFindPersonNull () {
+		Mockito.when(em.createNamedQuery("Person.findPerson", Person.class)).thenReturn(query);
 		Mockito.when(query.getResultList()).thenReturn(null);
 		
-		User actual = dao.findUser(user.getEmail(),user.getPassword());
+		Person actual = dao.findPerson(user.getEmail(),user.getPassword());
 		Assert.assertEquals(null, actual);
 	}
 	
 	@Test
-	public void testFindUserByEmail () {
-		List<User> expected = Arrays.asList(user);
-		Mockito.when(em.createNamedQuery("User.findByEmail", User.class)).thenReturn(query);
+	public void testFindPersonByEmail () {
+		List<Person> expected = Arrays.asList(user);
+		Mockito.when(em.createNamedQuery("Person.findByEmail", Person.class)).thenReturn(query);
 		Mockito.when(query.getResultList()).thenReturn(expected);
 		
-		User actual = dao.findUserByEmail(user.getEmail());
+		Person actual = dao.findPersonByEmail(user.getEmail());
 		Assert.assertEquals(user, actual);
 	}
 	
 	@Test
-	public void testFindUserByEmailNull () {
-		Mockito.when(em.createNamedQuery("User.findByEmail", User.class)).thenReturn(query);
+	public void testFindPersonByEmailNull () {
+		Mockito.when(em.createNamedQuery("Person.findByEmail", Person.class)).thenReturn(query);
 		Mockito.when(query.getResultList()).thenReturn(null);
 		
-		User actual = dao.findUserByEmail(user.getEmail());
+		Person actual = dao.findPersonByEmail(user.getEmail());
 		Assert.assertEquals(null, actual);
 	}
 	
 	@Test
-	public void testCreateUser () {
-		dao.createUser(user);
+	public void testCreatePerson () {
+		dao.createPerson(user);
 		Mockito.verify(em).persist(user);
 	}
 	
 	@Test
-	public void testUpdateUser () {
-		dao.updateUser(user);
+	public void testUpdatePerson () {
+		dao.updatePerson(user);
 		Mockito.verify(em).merge(user);
 	}
 }

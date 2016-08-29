@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import egen.movieflix.dao.CommentDao;
 import egen.movieflix.entity.Comment;
 import egen.movieflix.entity.Movie;
-import egen.movieflix.entity.User;
+import egen.movieflix.entity.Person;
 import egen.movieflix.service.CommentService;
 import egen.movieflix.service.CommentServiceImpl;
 import egen.movieflix.test.TestConfig;
@@ -32,14 +32,14 @@ public class CommentServiceTest {
 	
 	private Movie movie;
 	
-	private User user;
+	private Person user;
 	
 	private Comment comment;
 	
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
-		user = new User();
+		user = new Person();
 		user.setEmail("test@test.com");
 		user.setFirstName("test");
 		user.setLastName("user");

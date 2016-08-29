@@ -10,8 +10,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import egen.movieflix.entity.User;
-import egen.movieflix.exception.UserNotFoundException;
+import egen.movieflix.entity.Person;
+import egen.movieflix.exception.PersonNotFoundException;
 
 /**
  ********************************************************
@@ -34,29 +34,29 @@ import egen.movieflix.exception.UserNotFoundException;
 
 @Repository
 @Transactional
-public class UserDaoImpl implements UserDao {
+public class PersonDaoImpl implements PersonDao {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public List<User> findAllUsers() {
-		TypedQuery<User> query = em.createQuery("SELECT u FROM User u ORDER BY u.email ASC", User.class);
-		List<User> users = query.getResultList();
+	public List<Person> findAllPeople() {
+		TypedQuery<Person> query = em.createQuery("SELECT u FROM Person u ORDER BY u.email ASC", Person.class);
+		List<Person> users = query.getResultList();
 		return users;
 	}
 
 	@Override
-	public User findUserById(String id) {
-		return em.find(User.class, id);
+	public Person findPersonById(String id) {
+		return em.find(Person.class, id);
 	}
 
 	@Override
-	public User findUser(String email,String password) {
-		TypedQuery<User> query = em.createNamedQuery("User.findUser", User.class);
+	public Person findPerson(String email,String password) {
+		TypedQuery<Person> query = em.createNamedQuery("Person.findPerson", Person.class);
 		query.setParameter("pEmail", email);
 		query.setParameter("pPassword", password);
-		List<User> users = query.getResultList();
+		List<Person> users = query.getResultList();
 		if(users != null && users.size() == 1) {
 			return users.get(0);
 		}
@@ -66,10 +66,10 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User findUserByEmail(String email) {
-		TypedQuery<User> query = em.createNamedQuery("User.findByEmail", User.class);
+	public Person findPersonByEmail(String email) {
+		TypedQuery<Person> query = em.createNamedQuery("Person.findByEmail", Person.class);
 		query.setParameter("pEmail", email);
-		List<User> users = query.getResultList();
+		List<Person> users = query.getResultList();
 		if(users != null && users.size() == 1) {
 			return users.get(0);
 		}
@@ -80,23 +80,23 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	@Transactional
-	public User createUser(User user) {
+	public Person createPerson(Person user) {
 		em.persist(user);
 		return user;
 	}
 
 	@Override
 	@Transactional
-	public User updateUser(User user) {
+	public Person updatePerson(Person user) {
 		return em.merge(user);
 	}
 
 	@Override
 	@Transactional
-	public void deleteUser (String id) throws UserNotFoundException {
-		User existing =  findUserById(id);
+	public void deletePerson (String id) throws PersonNotFoundException {
+		Person existing =  findPersonById(id);
 		if(existing == null) {
-			throw new UserNotFoundException();
+			throw new PersonNotFoundException();
 		}
 		else {
 			em.remove(existing);
@@ -104,7 +104,7 @@ public class UserDaoImpl implements UserDao {
 
 
 		Query query = em.createQuery(
-				"DELETE FROM User m WHERE m.id = :pID");
+				"DELETE FROM Person m WHERE m.id = :pID");
 		query.setParameter("pID", id).executeUpdate();
 
 	}

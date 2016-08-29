@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import egen.movieflix.controller.CommentController;
 import egen.movieflix.entity.Comment;
 import egen.movieflix.entity.Movie;
-import egen.movieflix.entity.User;
+import egen.movieflix.entity.Person;
 import egen.movieflix.service.CommentServiceImpl;
 
 
@@ -44,14 +44,14 @@ public class CommentControllerTest {
 
 			private Movie movie;
 			
-			private User user;
+			private Person user;
 			
 			private Comment comment;
 
 			@Before
 			public void setup() {
 				MockitoAnnotations.initMocks(this);
-				user = new User();
+				user = new Person();
 				user.setEmail("test@test.com");
 				user.setFirstName("test");
 				user.setLastName("user");

@@ -28,7 +28,7 @@ public class Comment {
 	private Movie movie;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	private User user;
+	private Person user;
 
 
 	public String getCommentID() {
@@ -63,11 +63,11 @@ public class Comment {
 		this.movie = movie;
 	}
 
-	public User getUser() {
+	public Person getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Person user) {
 		this.user = user;
 	}
 

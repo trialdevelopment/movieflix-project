@@ -21,7 +21,7 @@ import egen.movieflix.dao.CommentDao;
 import egen.movieflix.dao.CommentDaoImpl;
 import egen.movieflix.entity.Comment;
 import egen.movieflix.entity.Movie;
-import egen.movieflix.entity.User;
+import egen.movieflix.entity.Person;
 import egen.movieflix.test.TestConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,13 +41,13 @@ public class CommentDaoTest {
 	
 	private Movie movie;
 	
-	private User user;
+	private Person user;
 	
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		
-		user = new User();
+		user = new Person();
 		user.setEmail("test@test.com");
 		user.setFirstName("test");
 		user.setLastName("user");

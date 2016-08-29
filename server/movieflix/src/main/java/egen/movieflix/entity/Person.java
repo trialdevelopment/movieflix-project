@@ -15,10 +15,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table
 @NamedQueries ({
-	@NamedQuery(name="User.findUser", query="SELECT u FROM User u WHERE u.email = :pEmail and u.password = :pPassword"),
-	@NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE u.email = :pEmail")
+	@NamedQuery(name="Person.findPerson", query="SELECT u FROM Person u WHERE u.email = :pEmail and u.password = :pPassword"),
+	@NamedQuery(name="Person.findByEmail", query="SELECT u FROM Person u WHERE u.email = :pEmail")
 })
-public class User {
+public class Person {
 
 	@Id
 	@GeneratedValue(generator="uuid2")
