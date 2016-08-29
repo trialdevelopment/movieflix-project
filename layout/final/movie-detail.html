@@ -1,0 +1,192 @@
+<!--
+@Author: Jay Nagda
+-->
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>MovieFlix</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+  </head><body>
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand try"><img height="20" alt="Brand" src="logo.png" class="img-thumbnail"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="index.html"><i class="fa fa-3x fa-fw fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-3x fa-file-movie-o fa-fw"></i>Movies</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-3x fa-fw fa-file-movie-o"></i>TV Series</a>
+            </li>
+            <li>
+              <a href="register.html"><i class="fa fa-3x fa-fw fa-user-plus"></i>Sign-Up</a>
+            </li>
+            <li>
+              <a href="login.html"><i class="fa fa-3x fa-fw fa-sign-in"></i>Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <form class="form-horizontal text-center" role="form">
+              <div class="form-group try" style="">
+                <div class="col-sm-10">
+                  <input type="search" class="form-control" id="inputEmail3" placeholder="Search..">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 col-md-1">
+                  <button type="submit" class="btn btn-default btn-sm" style="height:34px; margin-left:435px; margin-top: -49px;">
+                    <i class="fa fa-fw fa-search"></i>Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="thumbnail detail">
+              <img src="1.jpg" class="img-responsive" style="height: 403px; border: 1px solid grey; padding:1px">
+              <div class="caption" style="margin-left: 55px">
+                <div class="movie_rate">
+                  <div class="rating_desc">
+                    <p>Your Vote:</p>
+                  </div>
+                  <form action="" class="sky-form">
+                    <fieldset>
+                      <section>
+                        <div class="rating" style="width:105px">
+                          <input type="radio" name="stars-rating" id="stars-rating-5">
+                          <label for="stars-rating-5">
+                            <i class="icon-star"></i>
+                          </label>
+                          <input type="radio" name="stars-rating" id="stars-rating-4">
+                          <label for="stars-rating-4">
+                            <i class="icon-star"></i>
+                          </label>
+                          <input type="radio" name="stars-rating" id="stars-rating-3">
+                          <label for="stars-rating-3">
+                            <i class="icon-star"></i>
+                          </label>
+                          <input type="radio" name="stars-rating" id="stars-rating-2">
+                          <label for="stars-rating-2">
+                            <i class="icon-star"></i>
+                          </label>
+                          <input type="radio" name="stars-rating" id="stars-rating-1">
+                          <label for="stars-rating-1">
+                            <i class="icon-star"></i>
+                          </label>
+                        </div>
+                      </section>
+                    </fieldset>
+                  </form>
+                  <div class="clearfix"></div>
+                </div>
+                <h3>Thumbnail label</h3>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
+                  elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies
+                  vehicula ut id elit.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h1>A title</h1>
+            <h3>A subtitle</h3>
+            <p>Actor: sndjkcnsdkjncjksd kjsncjksdnc.</p>
+			<p>Director: sndjkcnsdkjncjksd kjsncjksdnc.</p>
+			<p>Year: sndjkcnsdkjncjksd kjsncjksdnc.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12" style="margin-top: -20px; margin-left: 63px">
+            <a class="btn btn-lg btn-primary" data-target="#mymodal" id="comment"><i class="fa fa-comment fa-fw"></i>Comment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12" style="margin-top: -45px; margin-left: 63px">
+            <h1 contenteditable="true">Comments</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12" style="margin-top: -40px; margin-left: 63px">
+            <blockquote>
+              <p>Great Movie!</p>
+              <footer>Abc</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="section section-primary">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1>Footer header</h1>
+            <p>Some tect...,
+              <br>Something about project.
+              <br>Maybe on Company</p>
+          </div>
+          <div class="col-sm-6">
+            <p class="text-info text-right">
+              <br>
+              <br>
+            </p>
+            <div class="row">
+              <div class="col-md-12 hidden-lg hidden-md hidden-sm text-left">
+                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
+                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
+                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 hidden-xs text-right">
+                <a href="https://www.instagram.com/?hl=en"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
+                <a href="https://twitter.com/"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
+                <a href="https://www.facebook.com/"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                <a href="https://github.com/"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+
+</body></html>

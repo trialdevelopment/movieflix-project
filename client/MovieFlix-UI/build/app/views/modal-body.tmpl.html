@@ -1,0 +1,144 @@
+<form name="movieAddForm" novalidate>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" required class="form-control" placeholder="Title of the Movie" id="title" ng-model="modalVm.movie.title">
+                <div class="error" ng-messages="movieAddForm.title.$error"  ng-if="movieAddForm.title.$dirty">
+                    <p ng-message="required">Movie Title is required</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select class="form-control" id="type" ng-model="modalVm.movie.type">
+                    <option value="movie">Movie</option>
+                    <option value="series">Series</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">Year</label>
+                <input type="number" name="year" placeholder="Movie Released Year" required class="form-control" id="year" min="1701" max="2025" ng-model="modalVm.movie.year">
+                <div class="error" ng-messages="movieAddForm.year.$error"  ng-if="movieAddForm.year.$dirty">
+                    <p ng-message="required">Year is required</p>
+                    <p ng-message="min">Year should be greater than 1700</p>
+                    <p ng-message="max">Year should be less than 2026</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rated">Rated</label>
+                <select class="form-control" id="rated" ng-model="modalVm.movie.rated">
+                    <option value="PG">PG</option>
+                    <option value="PG-13">PG-13</option>
+                    <option value="G">G</option>
+                    <option value="R">R</option>
+                    <option value="TV-MA">TV-MA</option>
+                    <option value="TV-PG">TV-PG</option>
+                    <option value="TV-14">TV-14</option>
+                    <option value="N/A">N/A</option>
+                </select>
+            </div>
+            <label for="released">Released</label>
+            <p class="input-group">
+                <input type="text" name="released" id="released" class="form-control" placeholder="dd MMM yyyy" uib-datepicker-popup="{{modalVm.format}}" ng-model="modalVm.movie.released" is-open="modalVm.popup.opened" datepicker-options="modalVm.dateOptions" close-text="Close" alt-input-formats="modalVm.altInputFormats" />
+                <span class="input-group-btn">
+                        <button type="button" class="btn btn-default datePicker" ng-click="modalVm.open()"><span class="glyphicon glyphicon-calendar"></span></button>
+                    </span>
+            </p>
+            <div class="form-group">
+                <label for="runtime">Runtime</label>
+                <input type="text" class="form-control" placeholder="Runtime of the Movie in minutes" id="runtime" ng-model="modalVm.movie.runtime">
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input type="number" name="rating" placeholder="User Rating for the Movie" class="form-control" id="rating" min="0" max="5" ng-model="modalVm.movie.rating">
+                <div class="error" ng-messages="movieAddForm.rating.$error"  ng-if="movieAddForm.rating.$dirty">
+                    <p ng-message="min">Rating should be greater than or equal to 0</p>
+                    <p ng-message="max">Rating should be less than or equal to 5</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input type="text" class="form-control" placeholder="list of genre separated by comma" id="genre" ng-model="modalVm.movie.genre">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel imdb-panel">
+                <div class="panel-heading imdb-panel-heading">IMDB Details</div>
+                <div class="panel-body imdb-panel-body">
+                    <div class="form-group">
+                        <label for="imdbID">IMDB ID</label>
+                        <input type="text" class="form-control" placeholder="IMDB ID for the Movie" id="imdbID" ng-model="modalVm.movie.imdb.imdbID">
+                    </div>
+                    <div class="form-group">
+                        <label for="metascore">Metascore</label>
+                        <input type="number" placeholder="IMDB metacore for the Movie" name="metascore" min="0" max="100"class="form-control" id="metascore" ng-model="modalVm.movie.imdb.metascore">
+                        <div class="error" ng-messages="movieAddForm.metascore.$error"  ng-if="movieAddForm.metascore.$dirty">
+                            <p ng-message="min">Rating should be greater than or equal to 0</p>
+                            <p ng-message="max">Rating should be less than or equal to 100</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="imdbRating">Rating</label>
+                        <input type="number" placeholder="IMDB Rating for the Movie" name="imdbRating" step="0.1" min="0" max="10"class="form-control" id="imdbRating" ng-model="modalVm.movie.imdb.imdbRating">
+                        <div class="error" ng-messages="movieAddForm.imdbRating.$error"  ng-if="movieAddForm.imdbRating.$dirty">
+                            <p ng-message="min">Rating should be greater than or equal to 0</p>
+                            <p ng-message="max">Rating should be less than or equal to 10</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="votes">Votes</label>
+                        <input type="number" class="form-control" placeholder="IMDB votes for the Movie" id="votes" ng-model="modalVm.movie.imdb.imdbVotes">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="director">Director</label>
+                <input type="text" placeholder="Director of the Movie" class="form-control" id="director" ng-model="modalVm.movie.director">
+            </div>
+            <div class="form-group">
+                <label for="writer">Writer</label>
+                <input type="text" placeholder="Writer of the Movie" class="form-control" id="writer" ng-model="modalVm.movie.writer">
+            </div>
+            <div class="form-group">
+                <label for="actor">Actors</label>
+                <input type="text" placeholder="Actors in the Movie" class="form-control" id="actor" ng-model="modalVm.movie.actor">
+            </div>
+
+        </div>
+        <div class = "col-sm-4">
+            <div class="form-group">
+                <label for="languages">Languages</label>
+                <input type="text" placeholder="list of Languages separated by comma" class="form-control" id="languages" ng-model="modalVm.movie.languages">
+            </div>
+            <div class="form-group">
+                <label for="countries">Countries</label>
+                <input type="text" placeholder="list of Countries separated by comma" class="form-control" id="countries" ng-model="modalVm.movie.countries">
+            </div>
+            <div class="form-group">
+                <label for="poster">Poster</label>
+                <textarea type="url" name="poster" placeholder="URL of Movie Poster" required rows="4" class="form-control" id="poster" ng-model="modalVm.movie.poster"></textarea>
+                <div class="error" ng-messages="movieAddForm.poster.$error"  ng-if="movieAddForm.poster.$dirty">
+                    <p ng-message="required">Poster URL is required</p>
+                    <p ng-message="url">Poster URL is invalid</p>
+                </div>
+            </div>
+            <img class="img-responsive img-rounded updatePoster" ng-src="{{modalVm.movie.poster}}"/>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="awards">Awards</label>
+                <textarea type="text" placeholder="Awards for the Movie" class="form-control" rows="2" id="awards" ng-model="modalVm.movie.awards"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="plot">Plot</label>
+                <textarea type="text" placeholder="Plot of the Movie" class="form-control" rows="4" id="plot" ng-model="modalVm.movie.plot"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="error">
+        <p  ng-show="modalVm.movieAlreadyExists">Movie is already there in the catalog with this name</p>
+    </div>
+</form>

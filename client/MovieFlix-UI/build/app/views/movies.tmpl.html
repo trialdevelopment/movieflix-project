@@ -1,0 +1,105 @@
+<div ng-controller="MovieController as movieVm" class="container-fluid">
+    <div class="row movieCatalog">
+        <div class="form-group col-sm-3">
+            <label class="filterLabel">Search</label>
+            <input type="text" ng-model="search" class="form-control" placeholder="Search Movie by Title">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
+
+        <div class="form-group col-sm-2">
+            <label class="filterLabel">Type</label>
+            <select ng-model="type" class="form-control">
+                <option value="">All</option>
+                <option value="movie">Movie</option>
+                <option value="series">Series</option>
+            </select>
+            <span class="glyphicon glyphicon-filter"></span>
+        </div>
+
+        <div class="form-group col-sm-2">
+            <label class="filterLabel">Year</label>
+            <input type="text" ng-model="year" class="form-control" placeholder="Search By Year">
+            <span class="glyphicon glyphicon-calendar" id="searchYear"></span>
+        </div>
+        <div class="form-group col-sm-2">
+            <label class="filterLabel">Genre</label>
+            <select ng-model="genre" class="form-control">
+                <option value="">All</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Animation">Animation</option>
+                <option value="Biography">Biography</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Crime">Crime</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Drama">Drama</option>
+                <option value="Game-Show">Game-Show</option>
+                <option value="Family">Family</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Film-Noir">Film-Noir</option>
+                <option value="History">History</option>
+                <option value="Horror">Horror</option>
+                <option value="Music">Music</option>
+                <option value="Musical">Musical</option>
+                <option value="Mystery">Mystery</option>
+                <option value="News">News</option>
+                <option value="Reality-TV">Reality-TV</option>
+                <option value="Romance">Romance</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="SitCom">SitCom</option>
+                <option value="Sport">Sport</option>
+                <option value="Talk-Show">Talk-Show</option>
+                <option value="Thriller">Thriller</option>
+                <option value="War">War</option>
+                <option value="Western">Western</option>
+            </select>
+            <span class="glyphicon glyphicon-filter"></span>
+        </div>
+        <div class="form-inline sortOrder col-sm-3">
+            <select ng-model="sortKey" ng-change="movieVm.sort(sortKey)" class="form-control">
+                <option value="">### Sort Movie-Catalog By ###</option>
+                <option value="year">Year</option>
+                <option value="imdb.imdbRating">IMDB Rating</option>
+                <option value="imdb.imdbVotes">IMDB Votes</option>
+            </select>
+            <span ng-click="movieVm.sortOrderChange()" class="glyphicon glyphicon-sort"></span>
+        </div>
+    </div>
+    <div class="row movieCatalog">
+        <div class="col-sm-3" ng-click="movieVm.addMovie()" ng-show="movieVm.addFlag">
+            <div class="add">
+                <span class="glyphicon glyphicon-plus"></span>
+            </div>
+        </div>
+        <div class="col-sm-3" ng-repeat="movie in movieVm.movies | orderBy:sortKey:movieVm.reverse | filter:{type:type}| filter:{year:year}| filter:{genre:genre}|filter:{title:search}| limitTo:movieVm.itemsPerPage:(movieVm.currentPage-1)*movieVm.itemsPerPage">
+            <img class="img-responsive img-rounded" ng-src="{{movie.poster}}"/>
+            <div class="textbox">
+                <span ng-click="movieVm.deleteMovie(movie)" ng-show="movieVm.deleteFlag" class="glyphicon glyphicon-trash"></span>
+                <span ng-click="movieVm.updateMovie(movie)" ng-show="movieVm.updateFlag" class="glyphicon glyphicon-edit"></span>
+                <div ui-sref="movie-details({ title:movie.title })" >
+                    <div class="title">
+                        <p>{{movie.title}}</p>
+                    </div>
+                    <div class="details-over">
+                        <p>
+                            <span class="type">{{movie.type}}</span>
+                            <span class="year">{{movie.released}}</span>
+                            <span class="rated">{{movie.rated}}</span>
+                        </p>
+                    </div>
+                    <div class="rating">
+                        <span id="detailView">IMDB</span><uib-rating ng-model="movie.imdb.imdbRating" max="10" read-only="true" ></uib-rating>
+                    </div>
+                    <p class="plot">{{ movie.awards | limitTo: 65 }}{{movie.awards.length > 65 ? '...' : ''}}</p>
+                    <div class="user-rating">
+                        <p>User Rating: {{movie.rating}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="paginateMovie">
+        <uib-pagination total-items="movieVm.length" items-per-page="{{movieVm.itemsPerPage}}" max-size="5" boundary-links="true" class="pagination-sm" ng-model="movieVm.currentPage" rotate="false" ng-change="movieVm.pageChanged()"></uib-pagination>
+    </div>
+</div>

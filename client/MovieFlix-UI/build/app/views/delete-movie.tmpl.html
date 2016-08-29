@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <button ng-click="modalVm.close()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h3 class="modal-title delete">{{modalVm.title}}</h3>
+</div>
+<div class="modal-body">
+    Do you want to delete <span class="deleteMovie">{{modalVm.movie.title}}</span> Movie ?
+</div>
+<div class="error">
+    <p  ng-show="modalVm.movieNotFound">There is no Movie with this name in the catalog</p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="modalVm.deleteMovie()">{{modalVm.btnTxt}}</button>
+    <button class="btn btn-warning" ng-click="modalVm.close()">No</button>
+</div>

@@ -1,0 +1,53 @@
+{
+  "name": "movieflix-ui",
+  "description": "UI Module for MovieFlix Project",
+  "main": "index.js",
+  "authors": [
+    "Jay Nagda"
+  ],
+  "license": "MIT",
+  "homepage": "http://127.0.0.1:3000",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "bootstrap": "^3.3.6",
+    "angular-messages": "^1.5.0",
+    "angular-ui-router": "^0.2.18",
+    "moment": "^2.12.0",
+    "angular-moment": "^0.10.3",
+    "ngstorage": "^0.3.10",
+    "angular-bootstrap": "^1.2.4",
+    "angular-ui-notification": "^0.2.0",
+    "angular-animate": "^1.5.5",
+    "font-awesome": "^4.6.3"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/fonts/glyphicons-halflings-regular.eot",
+        "dist/fonts/glyphicons-halflings-regular.svg",
+        "dist/fonts/glyphicons-halflings-regular.ttf",
+        "dist/fonts/glyphicons-halflings-regular.woff",
+        "dist/fonts/glyphicons-halflings-regular.woff2"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.svg",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2"
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "movie-flix">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie-Flix</title>
+
+    <!-- bower:css -->
+    <!-- endinject -->
+    <!-- vendor.min:css -->
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- app.min:css -->
+    <!-- endinject -->
+
+</head>
+<body>
+<header ng-controller="HeaderController as headerVm" ng-include="'app/views/header.tmpl.html'"></header>
+<section ui-view></section>
+<footer ng-include="'app/views/footer.tmpl.html'"></footer>
+
+<!-- bower:js -->
+<!-- endinject -->
+<!-- vendor.min:js -->
+<!-- endinject -->
+
+<!-- inject:js -->
+<!-- endinject -->
+<!-- app.min:js -->
+<!-- endinject -->
+</body>
+</html>
