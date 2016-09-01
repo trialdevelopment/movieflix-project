@@ -1,5 +1,4 @@
 # movieflix-seed
-seed for the Full-Stack training project: movieflix
 
 ## directory structure:
 
